@@ -39,38 +39,35 @@
                 </style>
         <script type="text/javascript">
             //submit
-            function comp(){
-                var num1 = 0;
-                var num2 = 0;
-                
-               num1 = document.getElementById("var1").value;
-               num2 = document.getElementById("var2").value;
-                
-                if (num1<=num2) {
-                    alert("numero1 no es mayor que numero2");
-                    
-                }
-
-                else if (num2>0) {
-                    alert("numero2 es mayor que cero");
+            function cad(){
+                var cad = "";
+                var cuenta_char_lc = 0;                
+                var cuenta_char_uc = 0;                
+                               
+               cad = document.getElementById("var1").value;
+               for (var index = 0; index < cad.length; index++) {
+                   if (cad[index] === cad[index].toLowerCase()) {
+                       cuenta_char_lc++;
+                   }else{
+                       cuenta_char_uc++;
+                   }
                    
-                }
-
-                else if (num1<=0 || num1 != 0) {
-                   alert("numero1 es negativo o distinto de cero");
+               }
+               if (cuenta_char_lc > 0 && cuenta_char_uc > 0) {
+               alert("La cadena \""+cad+ "\" tiene "+cuenta_char_uc+ " caracteres mayusculas \n"+ "y "+cuenta_char_lc+" caracteres en minuscula\n"+" Cadena con caracteres mixtos");
                    
-                }
-
-                else if ((num1+1)<num2) {
-                    alert("Incrementar en 1 unidad el valor de numero1 no lo hace mayor o igual que numero2");
-                    
-                }
-
-               
-
+               }else if( cuenta_char_lc == 0 & cuenta_char_uc > 0){
+               alert("La cadena \""+cad+ "\" tiene "+cuenta_char_uc+ " caracteres mayusculas \n"+ "y "+cuenta_char_lc+" caracteres en minuscula\n"+" Cadena con caracteres en mayusculas");
+                   
+               }else{
+               alert("La cadena \""+cad+ "\" tiene "+cuenta_char_uc+ " caracteres mayusculas \n"+ "y "+cuenta_char_lc+" caracteres en minuscula\n"+" Cadena con caracteres en minusculas");
+                   
+               }
+                 
             }
+
         </script>
-        <title>JS_ejercicio_5</title>
+        <title>JS_ejercicio_8</title>
     </head>
     <body>
         <header>
@@ -82,15 +79,14 @@
 
         <div id="body">
                 
-                <h2>Comparacion de dos valores por medio de codigo JS</h2>
+                <h2>Informacion sobre cadenas de texto por medio de codigo JS</h2>
                 <form name="form" action="" method="get">
                     
-                    <h3>Ingrese un numero entero</h3>
+                    <h3>Ingrese una cadena de texto</h3>
                     <input type="text" name="var1" id="var1">
-                    <h3>Ingrese otro numero entero</h3>
-                    <input type="text" name="var2" id="var2">                   
+                                    
                 </form>
-                <button onclick="comp()">Compara</button>
+                <button onclick="cad()">Composicion</button>
                 <br>                
         </div>
                    

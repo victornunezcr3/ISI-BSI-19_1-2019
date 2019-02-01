@@ -39,38 +39,27 @@
                 </style>
         <script type="text/javascript">
             //submit
-            function comp(){
+            function factorial(){
                 var num1 = 0;
-                var num2 = 0;
-                
+                var factorial_val = 1;
+                               
                num1 = document.getElementById("var1").value;
-               num2 = document.getElementById("var2").value;
-                
-                if (num1<=num2) {
-                    alert("numero1 no es mayor que numero2");
-                    
-                }
-
-                else if (num2>0) {
-                    alert("numero2 es mayor que cero");
-                   
-                }
-
-                else if (num1<=0 || num1 != 0) {
-                   alert("numero1 es negativo o distinto de cero");
-                   
-                }
-
-                else if ((num1+1)<num2) {
-                    alert("Incrementar en 1 unidad el valor de numero1 no lo hace mayor o igual que numero2");
-                    
-                }
-
+               if (num1 > 1) {
+                for (var index = 1; index <= num1; index++) {
+                   factorial_val *= index; 
+                                    
+               } 
                
+               }else if(num1 == 1){
+                   alert("Factorial = 1");
+               }else{
+                   alert("Debe de ingresar un numero mayor o igual \n a 1 y debe ser entero")
+               }
+               alert("El factorial de "+document.getElementById("var1").value+" es: "+factorial_val.toString());
 
             }
         </script>
-        <title>JS_ejercicio_5</title>
+        <title>JS_ejercicio_6</title>
     </head>
     <body>
         <header>
@@ -82,15 +71,14 @@
 
         <div id="body">
                 
-                <h2>Comparacion de dos valores por medio de codigo JS</h2>
+                <h2>Factorial de un numero por medio de codigo JS</h2>
                 <form name="form" action="" method="get">
                     
                     <h3>Ingrese un numero entero</h3>
                     <input type="text" name="var1" id="var1">
-                    <h3>Ingrese otro numero entero</h3>
-                    <input type="text" name="var2" id="var2">                   
+                                    
                 </form>
-                <button onclick="comp()">Compara</button>
+                <button onclick="factorial()">CalculaFactorial</button>
                 <br>                
         </div>
                    
