@@ -1,2 +1,0 @@
-Xample de texto escrito directamente en github.
-Linea numero 02 de cambios en el archivo.
