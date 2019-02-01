@@ -4,4 +4,4 @@
 Repositorio de entrega de tareas y proyectos.
 ![alt](![(http://img/logo.png))
 
-![Alt uam](img/logo.png)?raw=true "logo")
+![Alt uam](img/logo.png))
