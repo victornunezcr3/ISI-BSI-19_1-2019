@@ -1,0 +1,180 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<!-- Documento HTML con carácteres UTF8 -->
+	
+		<meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+		<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+	
+		<title>Calculadora AJAX</title>
+				
+		<!-- Clases CSS internas -->
+		
+		<style type="text/css">
+		
+		#pagina												/* Envoltura general */
+		{
+			background-color: aquamarine;
+			margin: auto;									/* Margenes (centrado) */
+			width: 600px;									/* Ancho */
+			text-align: center;							/* Textos internos centrados */
+			font-family: "arial, sans-serif"; 		/* Fuente del texto */
+		}
+		
+		#mensaje											/* Mensaje de error */
+		{
+			width: 100%;									/* Ancho */
+			margin-top: 20px;							/* Margen superior */
+			margin-bottom: 30px;						/* Margen inferior */
+			color: #ff0e0e;								/* Color del texto (foreground) */
+			font-size: 12px;								/* Tamaño de la fuente */
+		}
+		
+		#operando1, #operando2					/* Campos de texto de los operandos */
+		{
+			font-size: 25px;								/* Tamaño de la fuente */
+			border: 2px solid blueviolet;
+			border-radius: 4px;						/* Estilo del borde */
+			width: 45%;
+		}
+		
+		#operador											/* Selector del operador */
+		{
+			font-size: 25px;								/* Tamaño de la fuente */
+		}
+		
+		#igual													/* Botón para realizar la operación */
+		{
+			font-size: 25px;								/* Tamaño de la fuente */
+		}
+		
+		#resultado											/* Campo de texto donde se despliega el resultado */
+		{
+			font-size: 25px;								/* Tamaño de la fuente */
+			font-style: italic;								/* Atributo de fuente itálica o cursiva */
+		}
+
+		input[type=text] 
+		{
+			border: 2px solid red;
+			border-radius: 4px;
+		}
+		
+		</style>
+
+		<!-- Referencias a Javascripts externos -->
+
+		<script src="http://www.google.com/jsapi"></script>
+		<script>google.load("jquery", "1");</script>
+
+		<!-- Código Javascript interno -->
+
+		<script type='text/javascript'>
+
+		/* Código a ejecutarse tan pronto como la
+		    página ha sido cargada por el navegador */
+
+		$(document).ready(function () 
+		{
+			/* Asociar el evento de clic del botón 'igual'
+			    con la lógica del negocio de la aplicación */
+			
+			$('#igual').click(function() 
+			{ 
+				procesar();
+			});
+		});
+		
+		function procesar()
+		{
+			$.ajax ({
+				
+				url: 				'calculadora.php',								/* URL a invocar asíncronamente */
+				type:   			'post',											/* Método utilizado para el requerimiento */
+				data: 			$('#formulario').serialize(),						/* Información local a enviarse con el requerimiento */
+
+				/* Que hacer en caso de ser exitoso el requerimiento */
+
+				success: 	function(request, settings)
+				{
+					/* Cambiar el color del texto a verde */
+					
+					$('#mensaje').css('color', '#0ab53a');
+					
+					/* Mostrar un mensaje informando el éxito sucedido */
+					
+					$('#mensaje').html("Operación realizada exitosamente");
+					
+					/* Mostrar el resultado obtenido del cálculo solicitado */
+					
+					$('#resultado').html(request);
+				},
+				
+				/* Que hacer en caso de que sea fallido el requerimiento */
+				
+				error: 	function(request, settings)
+				{
+					/* Cambiar el color del texto a rojo */
+					
+					$('#mensaje').css('color', '#ff0e0e');
+					
+					/* Mostrar el mensaje de error */
+					
+					$('#mensaje').html('Error: ' + request.responseText);
+					
+					/* Limpiar cualquier resultado anterior */
+					
+					$('#resultado').html('Error');
+				}				
+			});
+		}
+		
+		</script>
+
+	</head>
+
+	<body>
+		<header>
+			<div class = "w3-container w3-red">
+				<h1>PROGRAMACION AVANZADA - I CUATRIMESTRE 2019</h1>
+			</div>    
+	
+		</header>
+		<!-- Contenido del documento -->
+		
+		<div style="background-color: aqua" id='pagina'>
+			<h2>Calculadora cuenta pollos con PHP y AJAX</h2>
+			<h3>Muestra resultado con dos decimales</h3>
+			<div id='mensaje'>&nbsp;</div>
+			
+			<form id='formulario'  action='#' method='post'>
+				<input type='text' placeholder="Ingrese numero entero" id='operando1' name='operando1' value='' size='4' maxlength='4' />
+				
+				<select  id='operador' name='operador'>
+					<option value='SU'>+</option>
+					<option value='RE'>-</option>
+					<option value='MU'>*</option>
+					<option value='DI'>/</option>
+				</select>
+				
+				<input type='text' placeholder="Ingrese numero entero" id='operando2' name='operando2' value='' size='4' maxlength='4' />
+				
+				<input type='button' id='igual' value='=' />
+				
+				<span id='resultado'>&nbsp;</span>
+				<h2>Con control de errores</h2>
+				<h2>-------------------------------------</h2>
+				<h3>.</h3>
+			</form>
+		</div>
+		<footer>
+				<div class="w3-container w3-red"  >
+						Todos los derechos reservados.&nbsp;&nbsp;&nbsp;&nbsp; Diseñado por: 
+						victor ml nunez lopez. &nbsp;&nbsp;&nbsp;&nbsp;
+						UAM 2019.  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Copyright (c) 2019   
+				</div> 
+			</footer>
+	</body>
+</html>
