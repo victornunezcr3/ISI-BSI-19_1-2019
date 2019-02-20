@@ -83,11 +83,12 @@
         <hr>
             <p>
                 <!-- Campo nombre -->
-                Usuario:<input type="text" name="nombre" placeholder="digite login" >
+                Usuario:<input type="text" name="nombre" placeholder="digite login"  required  
+                aria-describedby="descripcionContra" pattern='^[a-z A-Z]+[0-9]?'>
             </p>
             <p>
                 <!-- Campo password -->
-                Password:<input type="password" name="password" placeholder="">
+                Password:<input type="password" name="password" placeholder="" required >
             </p>
             <p>
                 <!-- Campo edad -->
