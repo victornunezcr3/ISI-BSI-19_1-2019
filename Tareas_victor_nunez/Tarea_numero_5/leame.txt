@@ -1,0 +1,5 @@
+Examen de practica para el examen parcial.
+
+Realizado parcialmente.
+falta modulo de facturacion, validaciones en productos y clientes.
+Se siguio una logica con las tablas.
