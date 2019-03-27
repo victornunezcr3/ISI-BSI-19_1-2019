@@ -1,0 +1,21 @@
+<?php
+$this->headTitle('About');
+
+$this->mainMenu()->setActiveItemId('about');
+
+$this->pageBreadcrumbs()->setItems([
+            'Home'=>$this->url('home'),
+            'About'=>$this->url('about'),
+            ]);
+?>
+
+<h1>Proyecto programado Programacion Avanzada </h1>
+<h2>I Cuatrimestre 2019</h2>
+
+<p>
+    Application name: <?= $this->escapeHtml($appName) ?>
+</p>
+
+<p>
+    Application description: <?= $this->escapeHtml($appDescription) ?>
+</p>
