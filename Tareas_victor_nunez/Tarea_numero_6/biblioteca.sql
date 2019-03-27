@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 27-03-2019 a las 05:58:44
+-- Tiempo de generación: 27-03-2019 a las 20:28:00
 -- Versión del servidor: 10.1.37-MariaDB
 -- Versión de PHP: 7.1.26
 
@@ -41,16 +41,20 @@ UPDATE libro
 SET precio=round(precio + precio*(incre/100),2)
 WHERE edito=editorial$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_listar_libros` ()  SELECT * 
-FROM libro$$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_insertar_data_lib` (IN `titu` VARCHAR(50), IN `auto` VARCHAR(40), IN `edito` VARCHAR(30), IN `price` FLOAT(5,2))  MODIFIES SQL DATA
+INSERT INTO libro(titulo,autor,editorial,precio) VALUES(titu,auto,edito,price)$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_listar_libro` (IN `var` VARCHAR(50))  SELECT *
+FROM libro
+WHERE id_libro>0$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_uddate_libro` (IN `id` INT(6), IN `tit` VARCHAR(50), IN `aut` VARCHAR(40), IN `edita` VARCHAR(30), IN `pre` FLOAT(5,2))  MODIFIES SQL DATA
 UPDATE libro
-SET tit=titulo,
-    aut=autor,
-    edita=editorial,
-    pre=precio
-WHERE id=id_libro$$
+SET titulo=tit,
+    autor=aut,
+    editorial=edita,
+    precio=pre
+WHERE id_libro=id$$
 
 DELIMITER ;
 
@@ -73,8 +77,8 @@ CREATE TABLE `libro` (
 --
 
 INSERT INTO `libro` (`id_libro`, `titulo`, `autor`, `editorial`, `precio`) VALUES
-(1, 'Harry Potter', 'JK Rolling', 'Nose', 28.05),
-(2, 'Lor of the Ring', 'JR Tolkien', 'No se', 75.75),
+(1, 'Harry Potter', 'JK Rolling', 'Nose', 57.52),
+(2, 'Lor of the Ring', 'JR Tolkien', 'No se', 131.99),
 (3, 'Condorito', 'Juan Bainas', 'Prentice hall', 428.18),
 (4, 'PHP for Dummis', 'Desconocido', 'Prentice hall', 456.78);
 
@@ -96,7 +100,7 @@ ALTER TABLE `libro`
 -- AUTO_INCREMENT de la tabla `libro`
 --
 ALTER TABLE `libro`
-  MODIFY `id_libro` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id_libro` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

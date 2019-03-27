@@ -1,13 +1,16 @@
-<?php
+<?php 
+
+require_once 'db_connect.php';
+
 if($_POST) {
-	$feditorial = $_POST['fname'];
-	$lname = $_POST['lname'];
-	$age = $_POST['age'];
-	$contact = $_POST['contact'];
+	$ftitulo = $_POST['titulo'];
+	$fautor = $_POST['autor'];
+	$feditorial = $_POST['editorial'];
+	$fprecio = $_POST['precio'];
 
 	$id = $_POST['id'];
-
-	$sql  = "UPDATE members SET fname = '$fname', lname = '$lname', age = '$age', contact = '$contact' WHERE id = {$id}";
+	printf($id);
+	$sql  = "CALL sp_uddate_libro({$id},'$ftitulo',$fautor,$feditorial,$fprecio)";
 	if($connect->query($sql) === TRUE) {
 		echo "<p>Succcessfully Updated</p>";
 		echo "<a href='../edit.php?id=".$id."'><button type='button'>Back</button></a>";
@@ -15,3 +18,9 @@ if($_POST) {
 	} else {
 		echo "Erorr while updating record : ". $connect->error;
 	}
+
+	$connect->close();
+
+}
+
+?>
